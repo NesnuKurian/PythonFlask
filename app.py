@@ -6,7 +6,7 @@ from pymongo import MongoClient
 
 app= Flask(__name__)
 app.config['MONGODB_SETTINGS'] = {
-    'db':'BookStore',
+    'db':'Library',
     'host':'localhost',
     'port': 27017
 }
@@ -14,7 +14,7 @@ app.config['MONGODB_SETTINGS'] = {
 connect(**app.config['MONGODB_SETTINGS'])
 
 pymongo_client = MongoClient("mongodb://localhost:27017/")
-pymongo_db = pymongo_client["BookStore"]
+pymongo_db = pymongo_client["Library"]
 
 app.register_blueprint(api)
 
