@@ -1,6 +1,5 @@
 import datetime
 from model import Book
-from flask import jsonify
 
 class BookServices:
     def add_new_book(self):
@@ -47,6 +46,20 @@ class BookServices:
                                 'bookId': self["bookId"]
                             }
                         }, {
+                            '$project': {
+                                '_id': 0
+                            }
+                        }
+                    ])
+        
+        if book_available:
+            return(list(book_available))
+        else:
+            return("Book not found")
+        
+    def display_all_book(self):
+        book_available= Book._get_collection().aggregate([
+                        {
                             '$project': {
                                 '_id': 0
                             }
